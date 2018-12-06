@@ -1,0 +1,26 @@
+
+ <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="searchText" placeholder="Search.." class="form-control">
+  </div>
+ </div>
+
+<table border="1" class="table table-bordered table-hover table-stripped">
+	<thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Actions</th>
+    </tr>
+	</thead>
+    <tr *ngFor="let product of products | grdFilter: {name: searchText}; ">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.cost}}</td>
+        <td> <a class="btn btn-info" [routerLink]="['/details', { id:product.id }]">Details</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-success" [routerLink]="['/cart', { id:product.id }]">Add to Cart</a>
+        </td>
+    </tr>
+</table>
